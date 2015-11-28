@@ -50,7 +50,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'imagesearchapp.urls'
+ROOT_URLCONF = 'imageserverproj.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'imagesearchapp.wsgi.application'
+WSGI_APPLICATION = 'imageserverproj.wsgi.application'
 
 
 # Database
