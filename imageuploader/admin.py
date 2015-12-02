@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import IMGFile
 
-# Register your models here.
+
+admin.site.register(IMGFile)
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" media="screen"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+<h1 align="center">Image Uploader</h1>
+
+<div class="container center-container">
+    <div class="row">
+
+        <div class="col-md-7">
+            <h2>Select an Image</h2>
+            <br>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="{% url 'upload_file' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p>{{ form.non_field_errors }}</p>
+
+                        <p>{{ form.label }} {{ form.help_text }}</p>
+
+                        <p>
+                            {{ form.errors }}
+                            {{ form }}
+                        </p>
+
+                        <p><input type="submit" value="Upload"/></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 col-md-offset-1">
+            <h2>Results</h2>
+            <br>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <br>
+</div>
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+</body>
+</html>
