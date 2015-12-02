@@ -1,0 +1,13 @@
+*{
+  font-family: "Palatino";
+  color: #003366;
+}
+h1 {
+  font-family: "Palatino";
+  color: #003366;
+}
+.center-container {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
