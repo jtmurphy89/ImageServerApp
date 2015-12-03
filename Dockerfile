@@ -1,5 +1,9 @@
 FROM python:2.7
 ENV PYTHONUNBUFFERED 1
+
+#RUN apt-get update && apt-get install -y libopencv-dev python-opencv
+
+
 RUN mkdir /code
 WORKDIR /code
 ADD requirements.txt /code/

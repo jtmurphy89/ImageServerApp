@@ -4,8 +4,10 @@ from .models import IMGFile
 from .forms import IMGForm
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
-import cv2
-import
+#from helper import histHelper
+
+
+
 
 
 def index(request):
@@ -18,9 +20,13 @@ def upload_file(request):
         if form.is_valid():
             newImg = IMGFile(imgFile=request.FILES['imgField'])
             newImg.save()
-            dict = {'imgResult': IMGFile.objects.get(id=newImg.id), 'form': form}
-            #return HttpResponseRedirect(reverse('upload_file'))
+            # create new histogram using helper and save it to histograms folder
+            return HttpResponseRedirect(reverse('upload_file'))
+            # return HTTPResponseRedirect(os.path.join(BASE_DIR, 'imageUploader/results', newImg.url)
     else:
         form = IMGForm()
-        dict = {'form': form}
-    return render_to_response('base.html', dict, context_instance=RequestContext(request))
+    return render_to_response('base.html', {'form': form}, context_instance=RequestContext(request))
+
+
+# will call histHelper.histCompare and render its output in basic.html
+# def results(request):
