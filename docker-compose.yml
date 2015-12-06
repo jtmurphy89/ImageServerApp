@@ -1,11 +1,26 @@
 db:
+  restart: always
+  container_name: db
   image: postgres
-web:
-  build: .
-  command: python manage.py runserver 0.0.0.0:8000
+  volumes_from:
+    - data
+data:
+  restart: always
+  container_name: data
+  image: postgres
   volumes:
-    - .:/code
+    - /var/lib/postgresql
+  command: "true"
+web:
+  container_name: web
+  build: .
+  command: /usr/bin/python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - .:/home/imageserver
   ports:
     - "8000:8000"
   links:
     - db
+  environment:
+    - INSTANCE_TYPE=web
+    - DJANGO_SETTINGS_MODULE=imageServerProj.settings

@@ -18,4 +18,4 @@ for each histogram H' of some database image I' (which is not equal to the id of
 >> S = cv2.compareHist(H, H', method)
 
 where method could be any of 5 different metrics (again, we choose a single one for the whole image database
-for consistency). We then display the 3 highest scoring pairs (I', S) in basic.html. 
+for consistency). We then display the 3 highest scoring pairs (I', S) in basic.html.

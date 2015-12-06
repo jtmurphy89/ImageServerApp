@@ -4,15 +4,9 @@ from .models import IMGFile
 from .forms import IMGForm
 from django.shortcuts import render_to_response, render
 from django.template import RequestContext
-#from helper import histHelper
 
 
-
-
-
-def index(request):
-    return render('base.html')
-
+# from helper import histHelper
 
 def upload_file(request):
     if request.method == 'POST':
@@ -29,4 +23,5 @@ def upload_file(request):
 
 
 # will call histHelper.histCompare and render its output in basic.html
-# def results(request):
+# def results(request, imagename):
+#     return render('base.html')

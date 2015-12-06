@@ -75,7 +75,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'imageServerProj.wsgi.application'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/uploads/'
-FILE_UPLOAD_PERMISSIONS = 0644
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
