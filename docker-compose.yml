@@ -4,6 +4,8 @@ db:
   image: postgres
   volumes_from:
     - data
+  ports:
+    - "5432:5432"
 data:
   restart: always
   container_name: data
@@ -13,14 +15,28 @@ data:
   command: "true"
 web:
   container_name: web
-  build: .
-  command: /usr/bin/python manage.py runserver 0.0.0.0:8000
+  build: ./web
+  command: /usr/local/bin/gunicorn imageServerProj.wsgi:application -w 2 -b :8000
   volumes:
-    - .:/home/imageserver
+    - .:/usr/src/app/
   ports:
     - "8000:8000"
   links:
     - db
   environment:
-    - INSTANCE_TYPE=web
-    - DJANGO_SETTINGS_MODULE=imageServerProj.settings
+    - DB_NAME=postgres
+    - DB_USER=postgres
+    - DB_SERVICE=db
+    - DB_PORT=5432
+nginx:
+  restart: always
+  container_name: nginx
+  build: ./nginx/
+  ports:
+    - "80:80"
+  volumes:
+    - /www/static
+  volumes_from:
+    - web
+  links:
+    - web:web
