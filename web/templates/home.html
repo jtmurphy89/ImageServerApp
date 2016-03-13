@@ -1,0 +1,73 @@
+{% extends "_base.html" %}
+
+
+{% block content %}
+    {% load staticfiles %}
+    <h2 align="center">Upload an Image!</h2>
+
+    <br>
+
+    <form action="/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ form.non_field_errors }}</p>
+
+        <p>
+            {{ form.errors }}
+            {{ form.imgField }}
+        </p>
+        <input type="submit" class="btn btn-success btn-lg btn-block" value="Upload">
+    </form>
+
+
+    <br>
+    <hr>
+
+
+    <br>
+
+    <br>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Uploaded Image</th>
+            <th>Similarity Results</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if picture %}
+            <tr>
+                <td><img src="{{ picture.imgFile.url }}" alt="None" style="width:304px;height:228px;"></td>
+                <td>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Score (HSV Correlation)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% if images %}
+                            {% for image, score in images %}
+                                <tr>
+                                    <td><img src="{{ image.imgFile.url }}" alt="None" style="width:101px;height:76px;">
+                                    </td>
+                                    <td>{{ score }}</td>
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td></td>
+                                <td>{{ score }}</td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        {% else %}
+        {% endif %}
+        </tbody>
+    </table>
+
+
+{% endblock content %}
